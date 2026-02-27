@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="https://stouffer-labs.github.io/cypress-logo.svg" alt="cypress" width="48" height="96" />
+</p>
+
 # cypress
 
 `cypress` is a local semantic navigation and knowledge index for project workspaces.
