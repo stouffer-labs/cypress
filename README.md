@@ -20,13 +20,13 @@ cypress add ~/c-projects
 cypress index
 
 # Search (non-interactive)
-cypress search adobe efs
+cypress search storage replication
 
 # Interactive picker (prints a selected path)
-cypress pick --query "adobe efs"
+cypress pick --query "storage replication"
 
 # To cd (a subprocess cannot change the parent shell's cwd)
-cd "$(cypress pick --query 'adobe efs')"
+cd "$(cypress pick --query 'storage replication')"
 ```
 
 ## Publish via GitHub API
@@ -88,7 +88,7 @@ Daemon picker now live re-queries while typing (debounced) and keeps file previe
 
 Inside `cypress pick`:
 - `Enter`: print the selected path to stdout
-- Use command substitution to `cd`, for example: `cd "$(cypress pick --query 'adobe efs')"`
+- Use command substitution to `cd`, for example: `cd "$(cypress pick --query 'storage replication')"`
 
 ## CLI Commands
 
@@ -249,10 +249,10 @@ Terminal graph summaries (table output):
 
 ```bash
 # direct outgoing neighbors for a project
-cypress graph neighbors --path ~/c-projects/202601-adobe-efs-cost-calculation --limit 12 --threshold 0.60
+cypress graph neighbors --path ~/c-projects/202601-storage-cost-analysis --limit 12 --threshold 0.60
 
 # lineage around a focus project (incoming + outgoing + relay edges when depth > 1)
-cypress graph lineage --path ~/c-projects/202601-adobe-efs-cost-calculation --depth 2 --threshold 0.60 --limit 20
+cypress graph lineage --path ~/c-projects/202601-storage-cost-analysis --depth 2 --threshold 0.60 --limit 20
 ```
 
 Graph viewer highlights:
