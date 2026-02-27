@@ -2206,8 +2206,12 @@ fn run_graph_cmd(args: &[OsString]) {
         println!("usage: cypress graph [doctor|status|start|stop|provision|view|open|neighbors|lineage] [--wait <seconds>] [--host <addr>] [--port <n>] [--path <project-or-child-path>] [--limit <n>] [--threshold <0..1>] [--depth <1..3>] [--no-system-install] [--no-download] [--force] [--from <falkordb-binary-path>]");
         println!("quick examples:");
         println!("  cypress graph open");
-        println!("  cypress graph neighbors --path ~/c-projects/202601-adobe-efs-cost-calculation --limit 12");
-        println!("  cypress graph lineage --path ~/c-projects/202601-adobe-efs-cost-calculation --depth 2 --threshold 0.60");
+        println!(
+            "  cypress graph neighbors --path ~/c-projects/202601-storage-cost-analysis --limit 12"
+        );
+        println!(
+            "  cypress graph lineage --path ~/c-projects/202601-storage-cost-analysis --depth 2 --threshold 0.60"
+        );
         println!("env:");
         println!("  CYPRESS_FALKOR_URL        (default: falkor://127.0.0.1:6379)");
         println!("  CYPRESS_FALKOR_GRAPH      (default: cypress)");
@@ -8760,10 +8764,10 @@ fn write_default_bench_queries(path: &Path) -> Result<(), String> {
     }
     let body = [
         "# One query per line. Lines starting with # are ignored.",
-        "adobe efs",
+        "storage replication",
         "semantic layer",
         "auth flow",
-        "bedrock pricing",
+        "inference pricing",
         "vector search",
     ]
     .join("\n")
@@ -12249,7 +12253,7 @@ fn run_self_test_cmd(args: &[OsString]) {
         println!("  --lifecycle runs daemon and managed-local FalkorDB lifecycle probes on temporary ports");
         return;
     }
-    let mut query = "adobe".to_string();
+    let mut query = "storage".to_string();
     let mut lifecycle = false;
     let mut timeout_s = 8u64;
     let mut i = 0usize;
