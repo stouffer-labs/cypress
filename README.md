@@ -1,5 +1,9 @@
 <p align="center">
-  <img src="https://stouffer-labs.github.io/cypress-logo.svg" alt="cypress" width="48" height="96" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://stouffer-labs.github.io/cypress-logo-light.svg" />
+    <source media="(prefers-color-scheme: light)" srcset="https://stouffer-labs.github.io/cypress-logo-dark.svg" />
+    <img src="https://stouffer-labs.github.io/cypress-logo-dark.svg" alt="cypress" width="48" height="96" />
+  </picture>
 </p>
 
 # cypress
