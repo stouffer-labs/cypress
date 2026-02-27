@@ -1,0 +1,17 @@
+__pycache__/
+.DS_Store
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+.cypress/
+.cypress-*/
+dist/
+build/
+*.egg-info/
+target/
+internal/
