@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Repo-local entrypoint:
+# - Prefer native Rust CLI built in this repo.
+# - No non-native fallback in normal usage.
+
+_repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+_rust_release="${_repo_dir}/target/release/cypress"
+_rust_debug="${_repo_dir}/target/debug/cypress"
+_repo_state_dir="${_repo_dir}/.cypress"
+
+# Keep state stable regardless of current working directory unless caller overrides it.
+if [[ -z "${CYPRESS_DATA_DIR:-}" ]]; then
+  export CYPRESS_DATA_DIR="${_repo_state_dir}"
+fi
+if [[ -z "${CYPRESS_CONFIG:-}" ]]; then
+  export CYPRESS_CONFIG="${_repo_state_dir}/config.toml"
+fi
+
+# Prefer native Rust CLI when available.
+if [[ -x "${_rust_release}" ]]; then
+  exec "${_rust_release}" "$@"
+fi
+if [[ -x "${_rust_debug}" ]]; then
+  exec "${_rust_debug}" "$@"
+fi
+
+echo "cypress launcher: no runnable binary found." >&2
+echo "build one with: cargo build --release -p cypress" >&2
+echo "then retry: ./cypress <command>" >&2
+exit 127
